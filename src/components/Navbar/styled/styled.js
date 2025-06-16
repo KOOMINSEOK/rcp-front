@@ -11,8 +11,16 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavbarTitle = styled.div`
-  font-size: 20px;
   font-weight: bold;
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
 `;
 
 export const NavbarTabs = styled.div`

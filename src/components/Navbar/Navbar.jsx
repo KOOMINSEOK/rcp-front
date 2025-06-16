@@ -5,10 +5,10 @@ export default function Navbar() {
 
   return (
     <NavbarContainer>
-      <NavbarTitle>RCP data AI Decision</NavbarTitle>
+      <NavbarTitle><NavLink to="/">RCP data AI Decision</NavLink></NavbarTitle>
       <NavbarTabs>
         <NavLink to="/">AI Analysis</NavLink>
-        <NavLink to="/analysis">Result</NavLink>
+        <NavLink to="/result">Result</NavLink>
         <NavLink to="/history">History</NavLink>
       </NavbarTabs>
     </NavbarContainer>

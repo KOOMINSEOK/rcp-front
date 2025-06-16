@@ -3,18 +3,18 @@ import FolderPicker from "../../components/PathSelector/FolderPicker";
 import FileInformation from "../../components/FileInformation/FileInformation";
 import ImageViewer from "../../components/ImageViewer/ImageViewer";
 import { useFileAnalysis } from "../../hooks/useFileAnalysis";
-import { useState } from "react";
 
-function MainPage() {
+function AnalyzePage() {
   const {
+    folderPath,
+    setFolderPath,
     selectedFile,
     summaryData,
     orbitSrc,
     isLoading,
     handleFileSelect,
   } = useFileAnalysis();
-  const [folderPath, setFolderPath] = useState("")
-  
+
   return (
     <S.MainContainer>
       <S.Title>AI Analysis</S.Title>
@@ -27,16 +27,18 @@ function MainPage() {
           />
         </S.PathBox>
 
-        {!folderPath && !isLoading && (
-          <S.AlertBox>Please select a folder that contains a file to analyze.</S.AlertBox>
-        )}
-
-        {isLoading ? (
+        {!folderPath && !isLoading ? (
+          <S.AlertBox>
+            Please select a folder that contains a file to analyze.
+          </S.AlertBox>
+        ) : isLoading ? (
           <S.LoadingBox>Analyzing the file...</S.LoadingBox>
         ) : (
           <>
             <S.ImgBox>
-              {selectedFile && <ImageViewer src={orbitSrc} alt="Analysis Result" />}
+              {selectedFile && (
+                <ImageViewer src={orbitSrc} alt="Analysis Result" />
+              )}
             </S.ImgBox>
             <S.DetailBox>
               <FileInformation resultData={summaryData} />
@@ -48,4 +50,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default AnalyzePage;

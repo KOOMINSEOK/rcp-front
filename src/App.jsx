@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layout/RootLayout';
 import Test from './pages/test/Test'
-import MainPage from './pages/MainPage/MainPage';
-import AnalysisPage from './pages/AnalysisPage/AnalysisPage'
+import AnalyzePage from './pages/AnalyzePage/AnalyzePage';
+import ResultPage from './pages/ResultPage/ResultPage'
 import HistoryPage from './pages/HistoryPage/HistoryPage';
 
 
@@ -13,19 +13,19 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <MainPage />,
+                element: <AnalyzePage />,
             },
             {
-                path: 'test',
-                element: <Test />,
-            },
-                        {
-                path: 'analysis',
-                element: <AnalysisPage />,
+                path: 'result',
+                element: <ResultPage />,
             },
                         {
                 path: 'history',
                 element: <HistoryPage />,
+            },
+                        {
+                path: 'test',
+                element: <Test />,
             },
         ],
     },
