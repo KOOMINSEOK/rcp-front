@@ -21,9 +21,9 @@ function ResultPage() {
     { title: "2X - FFT", band: "2X", type: "fft" },
   ];
 
-  const resultComponent = ({ title, src }) => (
-    <S.GraphBox>
-      <ImageViewer src={src} width="350px" height={"140px"} />
+  const resultComponent = ({ title, src, key }) => (
+    <S.GraphBox key={key}>
+      <ImageViewer src={src} width="330px" height={"300px"} />
       <span>{title}</span>
     </S.GraphBox>
   );
@@ -41,7 +41,8 @@ function ResultPage() {
         </S.PathBox>
         {!folderPath ? (
           <S.AlertBox>
-            Please select a folder that contains a file to analyze.
+            Please select a folder that contains the file you want to view the
+            results for.
           </S.AlertBox>
         ) : errorMessage ? (
           <S.MessageBox>{errorMessage}</S.MessageBox>
@@ -52,7 +53,7 @@ function ResultPage() {
                 <ImageViewer
                   src={`${SERVER_URL}${resultData.orbitPath}`}
                   alt="분석 결과"
-                  width="400px"
+                  width="500px"
                   height="400px"
                 />
               </S.ImgBox>
@@ -69,6 +70,7 @@ function ResultPage() {
                     ? resultComponent({
                         title,
                         src: `${SERVER_URL}${path}`,
+                        key: `${band}-${type}`,
                       })
                     : null;
                 })}

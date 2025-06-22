@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ImageContainer = styled.div`
   width: ${(props) => props.$width || "500px"};
-  height: ${(props) => props.$height || "500px"};
+  height: ${(props) => props.$height || "399px"};
   background-color: #111;
   display: flex;
   align-items: center;

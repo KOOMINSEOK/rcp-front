@@ -1,8 +1,8 @@
 import * as S from "./styled/styled";
-function FileInformation({ resultData  }) {
+function FileInformation({ resultData }) {
   return (
     <>
-      {resultData  && (
+      {resultData && (
         <S.Container>
           <S.InfoTitle>Information</S.InfoTitle>
           <S.InfoRow>
@@ -13,13 +13,14 @@ function FileInformation({ resultData  }) {
             <b>{new Date(resultData.created_at).toLocaleString()}</b>
           </S.InfoRow>
           <S.InfoRow>
-            <span>Analyze Result:</span> 
+            <span>Analyze Result:</span>
             <S.LabelText label={resultData.result_label}>
               {resultData.result_label}
             </S.LabelText>
           </S.InfoRow>
           <S.InfoRow>
-            <span>Confidence:</span> <b>{resultData.confidence}%</b>
+            <span>Confidence:</span>{" "}
+            <b>{(resultData.confidence * 100).toFixed(2)}%</b>
           </S.InfoRow>
         </S.Container>
       )}

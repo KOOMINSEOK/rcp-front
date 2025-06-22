@@ -90,8 +90,8 @@ export const LabelTag = styled.span`
   font-weight: bold;
   color: ${({ label }) => {
     const lower = label?.toLowerCase();
-    if (lower === 'normal' || lower === 'impact') return '#4CAF50'; // 초록
-    if (lower === 'abnormal') return '#F44336'; // 빨강
-    return '#555'; // 기본 회색
+    if (lower === "normal") return "#4CAF50"; // 초록
+    if (lower === "error") return "#F44336"; // 빨강
+    return "#555"; // 기본 회색
   }};
 `;

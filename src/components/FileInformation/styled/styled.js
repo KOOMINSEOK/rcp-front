@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 
-    margin-top: 20px;
-`
+  margin-top: 20px;
+`;
 
 export const InfoTitle = styled.div`
   font-weight: bold;
@@ -35,11 +35,9 @@ export const LabelText = styled.span`
   font-size: 20px;
   color: ${({ label }) => {
     const lower = label?.toLowerCase().trim();
-    if (lower === 'normal' || lower === 'impact') return '#4CAF50';
-    if (lower === 'abnormal') return '#F44336';
-    return '#555';
+    if (lower === "normal" || lower === "impact") return "#4CAF50";
+    if (lower === "error") return "#F44336";
+    return "#555";
   }};
   margin-left: 10px;
 `;
-
-  

@@ -12,7 +12,7 @@ export const useFileAnalysisResult = (selectedFile, folderPath) => {
   }, [folderPath]);
 
   useEffect(() => {
-    if (!selectedFile) {
+    if (!selectedFile || !folderPath) {
       setResultData(null);
       setErrorMessage("");
       return;
@@ -23,19 +23,20 @@ export const useFileAnalysisResult = (selectedFile, folderPath) => {
         const res = await getIdByFilename(selectedFile.name);
         if (!res?.id) {
           setErrorMessage("Please analyze the selected file first.");
+          setResultData(null);
           return;
         }
-
         const detail = await getResultDetail(res.id);
         setResultData(detail);
+        setErrorMessage("");
       } catch (e) {
         console.error(e);
         setErrorMessage("An error occurred while fetching the result.");
+        setResultData(null);
       }
     };
 
     fetch();
-  }, [selectedFile]);
-
+  }, [selectedFile, folderPath]);
   return { resultData, errorMessage };
 };

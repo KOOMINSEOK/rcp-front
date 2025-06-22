@@ -1,4 +1,4 @@
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 
 // 1. 업로드 (BIN 파일만 전송)
 export const uploadFile = async (file) => {
@@ -10,8 +10,9 @@ export const uploadFile = async (file) => {
       headers: {
         "Content-Type": "multipart/form-data",
       },
+      timeout: 40000,
     });
-    
+
     return response.data; // 반드시 리턴해야 함!
   } catch (error) {
     if (error.response?.status !== 409) {
@@ -23,8 +24,14 @@ export const uploadFile = async (file) => {
 
 // 2. 분석 요청
 export const analyzeFile = async (id) => {
-  const res = await axiosInstance.post(`/analyze/ml/${id}`);
-  return res.data; // "분석 완료" 같은 메시지 예상
+  const res = await axiosInstance.post(
+    `/analyze/ml/${id}`,
+    {},
+    {
+      timeout: 40000,
+    }
+  );
+  return res.data;
 };
 
 // 3. 분석 결과 요약 조회 (Analyze 페이지용)
@@ -34,6 +41,12 @@ export const getSummaryById = async (id) => {
 };
 
 export const generatePlots = async (id) => {
-  const res = await axiosInstance.post(`/analyze/${id}`);
+  const res = await axiosInstance.post(
+    `/analyze/${id}`,
+    {},
+    {
+      timeout: 30000,
+    }
+  );
   return res.data;
 };
