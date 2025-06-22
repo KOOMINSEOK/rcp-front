@@ -5,6 +5,7 @@ import FileInformation from "../../components/FileInformation/FileInformation.js
 import ImageViewer from "../../components/ImageViewer/ImageViewer.jsx";
 import { SERVER_URL } from "../../../config.js";
 import { useFileAnalysisResult } from "../../hooks/useFileAnalysisResult.js";
+import Carousel from "../../components/Carousel/Carousel.jsx";
 
 function ResultPage() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -21,12 +22,14 @@ function ResultPage() {
     { title: "2X - FFT", band: "2X", type: "fft" },
   ];
 
-  const resultComponent = ({ title, src, key }) => (
-    <S.GraphBox key={key}>
-      <ImageViewer src={src} width="330px" height={"300px"} />
-      <span>{title}</span>
-    </S.GraphBox>
-  );
+  const graphItems = resultData
+    ? graphConfigs
+        .map(({ title, band, type }) => {
+          const path = resultData.plots?.[band]?.[type];
+          return path ? { title, src: `${SERVER_URL}${path}` } : null;
+        })
+        .filter(Boolean)
+    : [];
 
   return (
     <S.MainContainer>
@@ -53,8 +56,8 @@ function ResultPage() {
                 <ImageViewer
                   src={`${SERVER_URL}${resultData.orbitPath}`}
                   alt="분석 결과"
-                  width="500px"
-                  height="400px"
+                  width="400px"
+                  height="320px"
                 />
               </S.ImgBox>
               <S.DetailBox>
@@ -64,16 +67,7 @@ function ResultPage() {
 
             <S.GrapContainer>
               <S.GraphWrapper>
-                {graphConfigs.map(({ title, band, type }) => {
-                  const path = resultData.plots?.[band]?.[type];
-                  return path
-                    ? resultComponent({
-                        title,
-                        src: `${SERVER_URL}${path}`,
-                        key: `${band}-${type}`,
-                      })
-                    : null;
-                })}
+                <Carousel graphs={graphItems} />
               </S.GraphWrapper>
             </S.GrapContainer>
           </>

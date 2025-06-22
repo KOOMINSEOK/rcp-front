@@ -18,7 +18,7 @@ export const PathDisplayContainer = styled.div`
 export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 80px;
+  gap: 50px;
 `;
 export const PathBox = styled.div`
   width: 25%;
@@ -32,7 +32,6 @@ export const MainBox = styled.div`
   width: 40%;
 `;
 export const ImgBox = styled.div`
-  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,6 +43,7 @@ export const DetailBox = styled.div`
 export const GrapContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   height: inherit;
   width: 35%;
 `;
@@ -57,7 +57,6 @@ export const GraphBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-// styled/styled.js
 export const MessageBox = styled.div`
   grid-column: span 2;
   padding: 20px;
